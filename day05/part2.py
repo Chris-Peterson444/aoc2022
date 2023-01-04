@@ -50,9 +50,13 @@ def compute(s: str) -> int:
         origin = int(tokens[3])
         dest = int(tokens[5])
 
+        moving = []
         for _ in range(num_to_move):
-            box = stacks[origin].pop(0)
-            stacks[dest].insert(0, box)
+            moving.append(stacks[origin].pop(0))
+        
+        for _ in range(num_to_move):
+            stacks[dest].insert(0,moving.pop(-1))
+
 
 
     tops = ''
@@ -76,7 +80,7 @@ move 3 from 1 to 3
 move 2 from 2 to 1
 move 1 from 1 to 2
 '''
-EXPECTED = 'CMZ'
+EXPECTED = 'MCD'
 
 
 @pytest.mark.parametrize(
